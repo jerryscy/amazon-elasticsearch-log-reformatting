@@ -6,7 +6,7 @@ It is often to use server access log for troubleshooting and monitoring. In this
 2. [Use Amazon Data Firehose to transform the access log](#stage-2-use-amazon-data-firehose-to-transform-the-access-log)
 
 ## Architecture
-![This is the architecture]((./docs/images/aes-architecture.png)
+![This is the architecture](./docs/images/aes-architecture.png)
 
 
 ## Prerequisites
@@ -79,6 +79,7 @@ Or
 
 > Key take away: Amazon Elasticsearch only allow authorized access. You need allow a role to send the data into Amazon Elasticsearch
 
+
 ### Setup access permission
 1. In [Kinesis Data Firehose delivery streams](https://console.aws.amazon.com/firehose/home), select the devlivery **stream access-log-stream-12345678**
 1. Click the **IAM role** in the Permissions session
@@ -93,15 +94,18 @@ Or
 
 > p.s. aware of the white space after the xxxxxxxxxxxxx if you are using copy and paste
 
+
 ### Verify the result
 Go to **Amazon Elasticsearch Kibana Dev Tools** and execute `GET /_cat/indices/access-log-12345678*?v&s=index`
 
 Expected result 
 ![Result](./docs/images/aes-successful-screen.png)
 
+
 ### Clean up the testing data
 1. Stop sending demo data
 1. In **Amazon Elasticsearch Kibana Dev Tools**, execute `Delete /access-log-12345678-*` to delete the demo data
+
 
 ## Stage 2: Use Amazon Data Firehose to transform the access log
 
@@ -127,6 +131,7 @@ For installing the kinesis agent in EC2, please see [the documentation](https://
 ```shell
 sudo service aws-kinesis-agent restart
 ```
+
 
 ### Create test case
 1. SSH into the EC2 instance which installed the kinesis agent
@@ -164,6 +169,7 @@ sudo chmod 755 /tmp/loggenerator.sh
 
 > Error: You cannot see anything in Amazon Elasticsearch. Let's check the error message.
 
+
 ### Trouble shooting
 1. Go to **Cloudwatch**
 1. select **Log groups** with a name **/aws/kinesisfirehose/access-log-stream-12345678**
@@ -184,6 +190,7 @@ Or
 1. You can see similar error in the download file.
 
 > Take away: Don't get frustrated when there is something wrong. Leverage Cloudwatch and S3 elasticsearch-failed for troubleshooting
+
 
 ### Setup Lambda function for transform
 1. Go to Lambda
@@ -280,6 +287,7 @@ exports.handler = async (event, context) => {
 
       * **Save changes**
     * Click **Test**. You should able to see `Execution result: succeeded`
+
 
 ### Update the delivery stream 
 1. Go to [Kinesis Data Firehose delivery streams](https://console.aws.amazon.com/firehose/home), select the devlivery **stream access-log-stream-12345678**
