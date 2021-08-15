@@ -196,11 +196,11 @@ Or
 1. Go to Lambda
 1. Create function
 1. Select **Author from scratch**
-    * Function name: access-log-12345678-log-converter
-    * Runtime: Node.js 14.x
+    * Function name: **access-log-12345678-log-converter**
+    * Runtime: **Node.js 14.x**
     * **Create function**
 1. Configure the lambda function
-    * Copy and paste below code into lambfa
+    * Copy and paste below code into lambda
 ```text
 const months = ["0","jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"];
 const access_log_parser = /^(?<remoteHostname>\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})\s(?<remoteLogname>(?:\-|\w+))\s(?<remoteUser>(?:\-|\w+))\s+\[(?<timestamp_date>\d{2})\/(?<timestamp_month>[A-Za-z]{3})\/(?<timestamp_year>\d{4}):(?<timestamp_time>\d{2}:\d{2}:\d{2}) (?<timezoneOffset_hour>(?:\+|\-)\d{2})(?<timezoneOffset_minutes>\d{2})\]\s"(?<method>(?:CONNECT|DELETE|GET|HEAD|OPTIONS|POST|PUT|TRACE))\s(?<uri>.+?)\s(?<protocol>HTTP\S\d\S\d)"\s(?<status>\d{3})\s(?<body_bytes_sent>\d+)\s"(?<referer>[\S]*)"\s"(?<userAgent>.+?)(?:\"\s\"(?<xForwardedFor>(?:\-|\S+)))?\"$/m;
@@ -321,6 +321,11 @@ green  open   access-log-12345678-2021-08-15 U5kd3tzRScuE4ELNHH_jXA   5   1     
 
 > Take away: By rewriting the `access_log_parser` in the code, you can transform your data into an Amazon Elasticsearch readable format. The `access_log_parser` is supported [Apache](http://httpd.apache.org/docs/current/logs.html#combined) and Nginx access log.
 
+
+### Clean up resource
+1. Delete delivery stream **stream access-log-stream-12345678**
+1. Delete Lambda function **access-log-12345678-log-converter**
+1. Empty and delete S3 bucket **delivery-stream-backup-access-log-12345678**
 
 Follow up reading:
 * [Amazon Elasticsearch Service Intro Workshop](https://github.com/aws-samples/amazon-elasticsearch-intro-workshop)
