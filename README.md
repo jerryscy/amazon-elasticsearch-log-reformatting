@@ -1,7 +1,7 @@
 # Transform server access log into Amazon Elasticsearch Service
 
 ## Introduction
-It is often to use server access log for troubleshooting and monitoring. In this lab, we will show how to 
+Amazon Elasticsearch is a solution to store, analyze and correlate log data. It requires the log transformation for quickly index, search, and visualize log. With indexing server access log into Amazon Elasticsearch with right format, it helps find and fix issues faster and improve application performance. In this lab, we will show how to 
 1. [Create a delivery stream and stream data into Amazon Elasticsearch](#stage-1-create-a-delivery-stream-and-stream-data-into-amazon-elasticsearch)
 2. [Use Amazon Data Firehose to transform the access log](#stage-2-use-amazon-data-firehose-to-transform-the-access-log)
 
@@ -327,7 +327,7 @@ green  open   access-log-12345678-2021-08-15 U5kd3tzRScuE4ELNHH_jXA   5   1     
 1. Delete Lambda function **access-log-12345678-log-converter**
 1. Empty and delete S3 bucket **delivery-stream-backup-access-log-12345678**
 
-Follow up reading:
+## Follow up reading:
 * [Amazon Elasticsearch Service Intro Workshop](https://github.com/aws-samples/amazon-elasticsearch-intro-workshop)
 * [Amazon Elasticsearch Service Monitor](https://github.com/aws-samples/amazon-elasticsearch-service-monitor)
 * [SIEM on Amazon Elasticsearch Service](https://github.com/aws-samples/siem-on-amazon-elasticsearch-service)
